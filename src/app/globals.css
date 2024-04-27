@@ -1,4 +1,11 @@
+* {
+  box-sizing: border-box;
+  text-decoration: none;
+  background: none;
+  border: none;
+}
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
