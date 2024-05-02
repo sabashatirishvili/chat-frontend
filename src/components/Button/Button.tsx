@@ -6,7 +6,7 @@ interface ButtonProps {
 
 function Button({ children }: ButtonProps,) {
   return (
-    <div className='bg-red-500 rounded-lg p-1 text-md hover:cursor-pointer'>{children}</div>
+    <div className='bg-sky-700 flex justify-center items-center text-sm rounded-lg h-9 p-2 text-md hover:cursor-pointer'>{children}</div>
   )
 }
 
