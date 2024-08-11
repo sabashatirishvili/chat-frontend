@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import ServerList from "@/components/Channels/Servers/ServerList";
+import Sidebar from "@/components/Channels/Sidebar/Sidebar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,8 +17,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className="w-full h-full bg-slate-800 text-white">
+      <body className={`${inter.className} h-full flex`}>
+        <ServerList />
+        <Sidebar/>
+        {children}
+      </body>
     </html>
   );
 }
