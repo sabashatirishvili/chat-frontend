@@ -1,9 +1,10 @@
 import React from 'react'
 import Detail from './Detail'
 
+
 export default function Message() {
   return (
-    <div className='border-y p-4 border-slate-900'>
+    <div className='border-b  p-4 border-slate-900'>
       <div className='flex items-center justify-between'>
         <div className='flex items-center gap-3 justify-between'>
           <div className='flex items-center justify-center text-center w-4 h-4 p-5 bg-green-600 rounded-full '>U</div>
