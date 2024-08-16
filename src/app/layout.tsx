@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en" className="w-full h-full bg-slate-800 text-white">
       <body className={`${inter.className} h-full flex`}>
         <ServerList />
-        <Sidebar/>
+        {/* <Sidebar/> */}
         {children}
       </body>
     </html>

@@ -1,8 +1,18 @@
+import ChatList from '@/components/Channels/ChatList'
+import Header from '@/components/Chats/Header'
 import React from 'react'
 
 function Channel() {
   return (
-    <div>channel</div>
+    <div className='flex grow'>
+      <div className='h-full'>
+        <ChatList /> 
+      </div>
+      <div className='grow'>
+        <Header/>
+      </div>
+    </div>
+
   )
 }
 
