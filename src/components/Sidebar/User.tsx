@@ -1,7 +1,7 @@
 "use client";
 import React from 'react'
 import { useState } from 'react';
-import Image from 'next/image'
+import { motion } from "framer-motion"
 import { IoCloseSharp } from 'react-icons/io5'
 
 export default function User() {
@@ -16,7 +16,10 @@ export default function User() {
   }
 
   return (
-    <div onMouseEnter={onMouseEnterHandler} onMouseLeave={onMouseLeaveHandler} className=' flex items-center justify-between hover:bg-slate-700 px-2 text-sm rounded-sm hover:cursor-pointer'>
+    <motion.div onMouseEnter={onMouseEnterHandler}
+      onMouseLeave={onMouseLeaveHandler}
+      className=' flex items-center justify-between px-2 text-sm rounded-sm hover:cursor-pointer'
+      whileHover={{backgroundColor: "#1e293b"}}>
       <div className='flex items-center  py-1 gap-3'>
         <div className='flex justify-center items-center p-4 rounded-full bg-green-600 text-center'>
           <h1 className='absolute'>U</h1>
@@ -26,6 +29,6 @@ export default function User() {
       {hover && (<button className='text-gray-500 hover:text-gray-200'>
         <IoCloseSharp />
       </button>)}
-    </div>
+    </motion.div>
   )
 }

@@ -6,7 +6,7 @@ function Channel() {
   return (
     <div className='flex grow'>
       <div className='h-full'>
-        <ChatList /> 
+        <ChatList /> j
       </div>
       <div className='grow'>
         <Header/>
