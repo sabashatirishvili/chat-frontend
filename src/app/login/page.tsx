@@ -1,17 +1,27 @@
+"use client";
 import React from 'react'
-import style from "./styles.module.css"
+import AuthInput from '@/components/Authentication/AuthInput';
+import { GoogleLogin } from '@react-oauth/google';
+import Link from 'next/link';
 
 function Login() {
   return (
-    <div className='w-full h-full'>
-      <div className='h-full flex justify-center items-center'>
-        <div className='flex flex-col p-8 rounded-lg justify-center gap-6 items-center bg-slate-600'>
-          <h1>SIGN IN</h1>
-          <div className='flex flex-col items-center justify-between gap-4 *:text-black *:p-1 *:rounded-md'>
-            <input type="text" placeholder='Email' className={`${style.input}`} />
-            <input type="password" placeholder='Password' />
+    <div className='w-full h-screen flex justify-center items-center'>
+      <div className='w-full rounded-lg flex *:flex-1 bg-slate-900 border border-slate-700 max-w-[64rem] py-6 px-2'>
+        <div className='flex flex-col border-r border-slate-700 p-4 gap-6'>
+          <h1 className='text-center text-lg pb-6 border-b border-slate-700'>Sign in</h1>
+          <div className='flex flex-col gap-2'>
+            <AuthInput label="Email" />
+            <AuthInput label="Password" password={true} />
           </div>
-          <button className='bg-gray-50 text-slate-700 py-1 px-3 rounded-sm'>Submit</button>
+          <Link href="/register" className='text-gray-300  underline'>Dont have an account? Sign up </Link>
+          <button className='self-center bg-green-600 text-gray-200 py-1 px-4 rounded-sm text-md'>Submit</button>
+        </div>
+        <div className='flex flex-col p-4'>
+          <h1 className='text-center text-lg pb-6 border-b border-slate-700'>Social</h1>
+          <div className='py-6 px-[6rem] flex flex-col'>
+            <GoogleLogin onSuccess={() => console.log('hi')} />
+          </div>
         </div>
       </div>
     </div>

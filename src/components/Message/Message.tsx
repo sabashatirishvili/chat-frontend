@@ -1,4 +1,5 @@
 import React from 'react'
+import Markdown from 'react-markdown'
 import Detail from './Detail'
 
 
@@ -18,7 +19,7 @@ export default function Message() {
         </div>
       </div>
       <div className='px-12 text-gray-100'>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis architecto facilis tempora quam? Doloribus corrupti, sunt iusto quidem doloremque blanditiis! Illo tempore sequi accusamus itaque! Praesentium quas reiciendis totam nisi.</p>
+        <Markdown>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis architecto facilis tempora quam? Doloribus corrupti, sunt iusto quidem doloremque blanditiis! Illo tempore sequi accusamus itaque! Praesentium quas reiciendis totam nisi.</Markdown>
       </div>
     </div >
   )
