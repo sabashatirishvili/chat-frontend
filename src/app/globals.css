@@ -2,3 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  box-sizing: border-box;
+}
+
+input {
+  all: unset;
+}
+
+input:focus {
+  outline: none;
+}
