@@ -3,7 +3,7 @@ import React from 'react';
 import { motion } from "framer-motion";
 import { FaPlus } from "react-icons/fa";
 
-export default function AddServer() {
+export default function AddButton() {
   return (
     <motion.div
       className='p-4 rounded-full cursor-pointer bg-slate-800 text-green-600'

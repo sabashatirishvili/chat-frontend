@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import ServerList from "@/components/Servers/ServerList";
+import Sidebar from "@/components/Sidebar/Sidebar";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -17,15 +18,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <GoogleOAuthProvider clientId="418141123587-j9gvkh6fg0r375tqkec09jfqhogml8ag.apps.googleusercontent.com">
-      <html lang="en" className="w-full h-full bg-slate-800 text-white">
-        <body className={`${inter.className} h-full flex`}>
-          <ServerList />
-          {/* <Sidebar/> */}
-          {children}
-        </body>
-      </html>
-    </GoogleOAuthProvider>
+    // <GoogleOAuthProvider clientId="418141123587-j9gvkh6fg0r375tqkec09jfqhogml8ag.apps.googleusercontent.com">
+    <html lang="en" className="w-full h-full bg-slate-800 text-white">
+      <body className={`${inter.className} h-full flex`}>
+        <ServerList />
+        <Sidebar />
+        {children}
+      </body>
+    </html>
+    // </GoogleOAuthProvider> 
 
   );
 }

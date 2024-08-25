@@ -1,11 +1,13 @@
 "use client";
 import React, { useState } from 'react'
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import AuthInput from '@/components/Authentication/AuthInput';
 import { GoogleLogin } from '@react-oauth/google';
 
-function Login() {
+function Register() {
+  const router = useRouter()
   const [credentials, setCredentials] = useState({
     username: "",
     email: "",
@@ -29,13 +31,16 @@ function Login() {
           </div>
           <Link href="/login" className='text-gray-300  underline'>Already have an account? Sign in</Link>
           <button onClick={() => {
-            axios.post('http://localhost:8000/api/users/login/', credentials).then((res) => console.log(res.data))
-          }} className='self-center bg-green-600 text-gray-200 py-1 px-4 rounded-sm text-md'>Submit</button>
+            axios.post('http://localhost:8000/api/users/create/', credentials).then((res) => {
+              if (res.status == 201) {
+                router.push('/login')
+              }
+            })
+          }} className='self-center bg-green-600 text-gray-200 py-1 px-4 rounded-sm text-md'>Sign up</button>
         </div>
         <div className='flex flex-col p-4'>
-          <h1 className='text-center text-lg pb-6 border-b border-slate-700'>Social</h1>
+          <h1 className='text-center text-lg pb-6 border-b border-slate-700'>Or</h1>
           <div className='py-6 px-[6rem] flex flex-col'>
-            <GoogleLogin onSuccess={() => console.log('hi')} />
           </div>
         </div>
       </div>
@@ -43,4 +48,4 @@ function Login() {
   )
 }
 
-export default Login
+export default Register

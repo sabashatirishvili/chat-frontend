@@ -2,14 +2,14 @@
 import React from 'react'
 import { usePathname } from 'next/navigation';
 import Server from './Server'
-import AddServer from './AddServer'
+import AddButton from './AddButton';
 import { IoChatboxSharp } from "react-icons/io5";
 import { motion } from "framer-motion";
 
 export default function ServerList() {
   const pathname = usePathname()
 
-  if (pathname === '/login' || pathname === '/register') {
+  if (pathname === '/login' || pathname === '/register' || pathname == '/') {
     return null;
   }
 
@@ -31,7 +31,7 @@ export default function ServerList() {
         <Server />
         <Server />
       </div>
-      <AddServer />
+      <AddButton />
     </div>
   )
 }
