@@ -8,7 +8,6 @@ import { MdAlternateEmail } from "react-icons/md";
 export default function Chat() {
   return (
     <div className='flex'>
-      <Sidebar/>
       <div className='flex flex-col grow max-h-screen'>
         <Header />
         <div className='flex flex-col grow justify-between px-2 overflow-auto'>

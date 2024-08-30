@@ -10,7 +10,7 @@ export default function Landing() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await axios.get('http://localhost:8000/api/users/check-auth/');
+        const res = await axios.get('http://localhost:8000/api/users/check-auth/', { withCredentials: true });
         const data = res.data;
 
         const authStatus = data.authenticated;
@@ -27,7 +27,7 @@ export default function Landing() {
     };
 
     checkAuth();
-  }, [router]); 
+  }, [router]);
 
 
   return (
