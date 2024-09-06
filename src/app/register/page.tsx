@@ -14,6 +14,20 @@ function Register() {
     password: ""
   })
 
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    axios.post('http://localhost:8000/api/token/', credentials).then((res) => {
+      if (res.status == 201) {
+        router.push('/')
+        console.log(res.data)
+        document.cookie = `token=${res.data}`
+      }
+    }
+    ).catch(error => {
+      console.log(error.message);
+    })
+  }
+
   const handleChange = (field: string, value: string) => {
     setCredentials(prev => ({ ...prev, [field]: value }))
   }
@@ -30,13 +44,7 @@ function Register() {
             <AuthInput label="Password" password={true} onChange={handleChange} />
           </div>
           <Link href="/login" className='text-gray-300  underline'>Already have an account? Sign in</Link>
-          <button onClick={() => {
-            axios.post('http://localhost:8000/api/users/create/', credentials).then((res) => {
-              if (res.status == 201) {
-                router.push('/login')
-              }
-            })
-          }} className='self-center bg-green-600 text-gray-200 py-1 px-4 rounded-sm text-md'>Sign up</button>
+          <button onClick={handleSubmit} className='self-center bg-green-600 text-gray-200 py-1 px-4 rounded-sm text-md'>Sign up</button>
         </div>
         <div className='flex flex-col p-4'>
           <h1 className='text-center text-lg pb-6 border-b border-slate-700'>Or</h1>
@@ -44,7 +52,7 @@ function Register() {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   )
 }
 

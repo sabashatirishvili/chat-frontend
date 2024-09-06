@@ -1,3 +1,5 @@
+"use client";
+import { useRef, useEffect } from 'react';
 import React from 'react'
 import ChatList from '@/components/Channels/ChatList'
 import Header from '@/components/Chats/Header'
@@ -6,6 +8,16 @@ import Message from '@/components/Message/Message'
 import { MdAlternateEmail } from 'react-icons/md'
 
 function Channel() {
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+
+  const scrollToBottom = () => {
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [])
+
   return (
     <div className='flex grow'>
       <div className='h-full'>
@@ -28,6 +40,7 @@ function Channel() {
             <Message />
             <Message />
             <Message />
+            <div ref={scrollRef}/>
           </div>
           <div>
           </div>

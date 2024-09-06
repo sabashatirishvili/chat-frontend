@@ -3,7 +3,11 @@ import { IoMdClose } from "react-icons/io";
 import Settings from './Settings';
 import { FaPen } from 'react-icons/fa';
 
-export default function UserSettingsModal() {
+interface PropTypes {
+  onClick: () => void
+}
+
+export default function UserSettingsModal({ onClick }: PropTypes) {
   return (
     <div className="absolute inset-0 bg-gray-800 bg-opacity-55">
       <div className="flex flex-col absolute w-5/11 mx-auto left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 p-4 bg-slate-900 shadow-sm rounded-sm">
@@ -14,7 +18,7 @@ export default function UserSettingsModal() {
               <FaPen size={14} />
             </button>
           </div>
-          <button>
+          <button onClick={onClick}>
             <IoMdClose />
           </button>
         </div>

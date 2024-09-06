@@ -4,7 +4,13 @@ import { useState } from 'react';
 import { motion } from "framer-motion"
 import { IoCloseSharp } from 'react-icons/io5'
 
-export default function User() {
+interface PropTypes {
+  id: string,
+  username: string, 
+  profile_picture: string
+}
+
+export default function Chat() {
   const [hover, setHover] = useState(false);
 
   const onMouseEnterHandler = () => {

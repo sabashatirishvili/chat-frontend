@@ -1,13 +1,27 @@
 "use client";
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation';
-import User from './User'
+import Chat from './Chat'
 import AuthenticatedUser from './AuthenticatedUser';
+import axios from 'axios';
+import getCookie from '../../../utils/getCookie';
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const [chats, setChats] = useState(null)
 
-  if (pathname === '/login' || pathname === '/register' || pathname == '/' || pathname == '/404') {
+  useEffect(() => {
+    const url = "http://localhost:8000/api/chats/"
+    axios.get(url, {
+      headers: {
+        Authorization: `Bearer ${getCookie('access-token')}`
+      }
+    }).then(res => setChats(res.data)).catch(error => console.log(error))
+  }, [])
+
+  console.log(chats)
+
+  if (pathname === '/login' || pathname === '/register' || pathname == '/' || pathname == '/404' || pathname.startsWith('/channels')) {
     return null;
   }
 
@@ -18,9 +32,9 @@ export default function Sidebar() {
       </div>
       <div className='flex flex-col justify-between grow'>
         <div className='pt-2'>
-          <User />
-          <User />
-          <User />
+          <Chat />
+          <Chat />
+          <Chat />
         </div>
         <AuthenticatedUser />
       </div>

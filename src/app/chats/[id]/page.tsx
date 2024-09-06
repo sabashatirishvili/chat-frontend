@@ -1,11 +1,22 @@
+"use client";
+import { useEffect, useRef } from 'react';
 import Header from '@/components/Chats/Header'
 import InputBar from '@/components/Chats/InputBar';
 import Message from '@/components/Message/Message';
-import Sidebar from '@/components/Sidebar/Sidebar';
 import React from 'react'
 import { MdAlternateEmail } from "react-icons/md";
 
 export default function Chat() {
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+
+  const scrollToBottom = () => {
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [])
+
   return (
     <div className='flex'>
       <div className='flex flex-col grow max-h-screen'>
@@ -29,6 +40,7 @@ export default function Chat() {
                 <Message />
                 <Message />
                 <Message />
+                <div ref={scrollRef} />
               </div>
             </div>
           </div>

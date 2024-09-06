@@ -3,6 +3,7 @@ import { useRouter } from 'next/navigation';
 import styles from './styles.module.css'
 import { useEffect } from 'react';
 import axios from 'axios';
+import getCookie from '../../utils/getCookie';
 
 export default function Landing() {
   const router = useRouter();
@@ -10,13 +11,15 @@ export default function Landing() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await axios.get('http://localhost:8000/api/users/check-auth/', { withCredentials: true });
+        const res = await axios.get('http://localhost:8000/api/users/check-auth/', { withCredentials: true, headers: {
+          Authorization: `Bearer ${getCookie('access-token')}`
+        } });
         const data = res.data;
 
         const authStatus = data.authenticated;
 
         if (authStatus) {
-          router.push('/chats/1');
+          router.push('/chats');
         } else {
           router.push('/login');
         }

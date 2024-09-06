@@ -4,7 +4,7 @@ interface PropTypes {
   label: string,
   password?: boolean,
   data?: string,
-  onChange: Function
+  onChange: (field: string, value:string) => void
 }
 export default function AuthInput({ label, password, onChange }: PropTypes) {
   return (
