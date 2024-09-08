@@ -1,18 +1,34 @@
 "use client";
 import React, { useEffect, useState } from 'react'
+import axiosInstance from '../../../utils/axiosInstance';
 import { usePathname } from 'next/navigation';
 import Chat from './Chat'
 import AuthenticatedUser from './AuthenticatedUser';
-import axios from 'axios';
 import getCookie from '../../../utils/getCookie';
+import { useRouter } from 'next/navigation';
+
+type Participant = {
+  id: string;
+  username: string;
+  profile_picture: string;
+  email: string;
+}
+
+type Chat = {
+  id: string;
+  name: string;
+  profile_picture: string;
+  participants: Participant[];
+}
 
 export default function Sidebar() {
+  const router = useRouter();
   const pathname = usePathname();
-  const [chats, setChats] = useState(null)
+  const [chats, setChats] = useState<Chat[] | null>(null);
 
   useEffect(() => {
     const url = "http://localhost:8000/api/chats/"
-    axios.get(url, {
+    axiosInstance.get(url, {
       headers: {
         Authorization: `Bearer ${getCookie('access-token')}`
       }
@@ -32,9 +48,14 @@ export default function Sidebar() {
       </div>
       <div className='flex flex-col justify-between grow'>
         <div className='pt-2'>
-          <Chat />
-          <Chat />
-          <Chat />
+          {chats && chats.map(chat => {
+            return (
+              <div key={chat.id} onClick={() => router.push(`/chats/${chat.id}`)}>
+                <Chat id={chat.id} username={chat.participants[0].username} profile_picture={chat.participants[0].profile_picture}  />
+              </div>
+            )
+          }
+          )}
         </div>
         <AuthenticatedUser />
       </div>

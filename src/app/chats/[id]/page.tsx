@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef } from 'react';
+import { useParams } from 'next/navigation';
 import Header from '@/components/Chats/Header'
 import InputBar from '@/components/Chats/InputBar';
 import Message from '@/components/Message/Message';
@@ -7,7 +8,24 @@ import React from 'react'
 import { MdAlternateEmail } from "react-icons/md";
 
 export default function Chat() {
+  const params = useParams();
+  console.log(params);
+  const socket = new WebSocket(`http://localhost:8000/ws/chat/${params.id}/`)
   const scrollRef = useRef<HTMLDivElement | null>(null);
+
+  function sendMessage(message: string) {
+    if (socket.readyState === WebSocket.OPEN) {
+      const messageData = JSON.stringify({ message: message });
+      socket.send(messageData);
+    } else {
+      console.error('WebSocket is not open. ReadyState:', socket.readyState);
+    }
+  }
+
+  socket.onopen = () => console.log("ws connection opened");
+  socket.onclose = () => console.log("ws connection closed");
+
+  socket.onmessage
 
   const scrollToBottom = () => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -45,7 +63,7 @@ export default function Chat() {
             </div>
           </div>
         </div>
-        <InputBar />
+        <InputBar/>
       </div>
     </div>
   )

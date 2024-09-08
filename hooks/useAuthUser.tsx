@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import axiosInstance from "../utils/axiosInstance";
 import getCookie from "../utils/getCookie";
 
 interface UserData {
@@ -19,7 +19,7 @@ const useAuthUser = () => {
     const url = 'http://localhost:8000/api/users/auth-user/'
     const fetchData = async () => {
       try {
-        const res = await axios.get(url, {
+        const res = await axiosInstance.get(url, {
           headers: {
             Authorization: `Bearer ${getCookie('access-token')}`
           }

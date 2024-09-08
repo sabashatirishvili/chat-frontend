@@ -51,7 +51,7 @@ function Login() {
         <div className='flex flex-col p-4'>
           <h1 className='text-center text-lg pb-6 border-b border-slate-700'>Or</h1>
           <div className='py-6 px-[6rem] flex flex-col'>
-            {/* <GoogleLogin onSuccess={() => console.log('hi')} /> */}
+            {/* <GoogleLogin onSuccess={() => console.log('hello world')} /> */}
           </div>
         </div>
       </div>
