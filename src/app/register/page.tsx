@@ -31,7 +31,7 @@ function Register() {
           </div>
           <Link href="/login" className='text-gray-300  underline'>Already have an account? Sign in</Link>
           <button onClick={() => {
-            axios.post('http://localhost:8000/api/users/create/', credentials).then((res) => {
+            axios.post('http://localhost:8000/api/users/', credentials).then((res) => {
               if (res.status == 201) {
                 router.push('/login')
               }
